@@ -7,15 +7,16 @@
     <title>Hello World</title>
 </head>
 <body>
+    <script src="Foods.js"></script>
+    <script src="app.js"></script>
     <div id="content">
         <img src="images/apple.jpg" id="food-image">
-        <p>Apple</p>
+        <p id="food-name">Apple</p>
         <div id="buttons">
-            <button id="yes" class="selector-button">Yes</button>
-            <button id="not-applicable" class="selector-button">Haven't had</button>
-            <button id="no" class="selector-button">No</button>
+            <button id="yes" class="selector-button" onClick="submitFood('Yes')">Yes</button>
+            <button id="not-applicable" class="selector-button" onClick="submitFood('Haven\'t had')">Haven't had</button>
+            <button id="no" class="selector-button" onClick="submitFood('No')">No</button>
         </div>
-        
     </div>
 </body>
 </html>
