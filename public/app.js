@@ -6,6 +6,7 @@ let unsplashTag;
 let foodCount = 0;
 let foodImage;
 let foodName;
+let content;
 
 /**
  * The main app constructor
@@ -14,6 +15,7 @@ function app(){
     foodImage = document.querySelector('#food-image');
     foodName = document.querySelector('#food-name');
     unsplashTag = document.querySelector('#unsplash-tag');
+    content = document.querySelector('#content');
 
     setFoodCount();
 
@@ -77,6 +79,7 @@ function showNextFood(){
                 foodImage.alt = currentFood[0].name;
                 foodName.innerText = currentFood[0].name;
                 unsplashTagConstructor(currentFood[0].imageAttribution);
+                content.style.display = 'block';
             } else if (this.status == 404) {
                 document.getElementById('text').innerHTML = 'Not Found';
             }
@@ -85,9 +88,10 @@ function showNextFood(){
         xhr.onerror = function(){
             console.log('Request Error from showNextFood()...');
         }
-
+        
         xhr.send();
         id = id + 1;
+
     }
     else{
         let content = document.querySelector('#content');
