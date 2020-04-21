@@ -19,5 +19,7 @@ const foods = [
         id: 4,
         name: 'Pomegranite',
         image: 'pomegranite.jpg'
-    }
+    },
 ];
+
+module.exports = foods;
