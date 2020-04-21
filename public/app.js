@@ -1,16 +1,54 @@
-let id = 1;
-let array = [];
-let resultString = '<h1>Results</h1>'
+let id = 0;
+let resultArray = [];
+let resultString = '<h1>Results</h1>';
+let foodCount = 0;
+let foodImage;
+let foodName;
 
+function app(){
+    foodImage = document.querySelector('#food-image');
+    foodName = document.querySelector('#food-name');
+    //want to call show next food to replace what is currently in the HTML due to the desire to randomize the starting value
+    //food count then show next food
+
+    setFoodCount();
+    showNextFood();
+}
+
+function setFoodCount(){
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", `/api/foods/count`, false);
+
+    xhr.onload = function(){
+        if(this.status == 200){
+            let count = JSON.parse(this.responseText);
+            foodCount = count;
+        } else if (this.status == 404) {
+            document.getElementById('text').innerHTML = 'Not Found';
+        }
+    }
+
+    xhr.onerror = function(){
+        console.log('Request Error...');
+    }
+
+    xhr.send();
+}
 
 function submitFood(text){
-    let foodImage = document.querySelector('#food-image');
-    let foodName = document.querySelector('#food-name');
+    foodImage = document.querySelector('#food-image');
+    foodName = document.querySelector('#food-name');
     name = foodName.innerText;
     //store the results here
-    array.push({id, name, text})
-    //If we've gone through all of the foods replace the text at the end with the results
-    if (id < 4)
+    resultArray = [...resultArray,{id, name, text}]
+    //show the next one and show the results if we went through all of the foods
+    showNextFood()
+}
+
+
+function showNextFood(){
+    console.log(foodCount);
+    if (id < foodCount)
     {
         id = id + 1;
         let xhr = new XMLHttpRequest();
@@ -34,9 +72,7 @@ function submitFood(text){
     }
     else{
         let content = document.querySelector('#content');
-        array.forEach(element => resultString = resultString + `<p>${element.name} : ${element.text}</p>`);
+        resultArray.forEach(element => resultString = resultString + `<p>${element.name} : ${element.text}</p>`);
         content.innerHTML = resultString;
-        console.log(array);
-        alert('All done');
     }
 }

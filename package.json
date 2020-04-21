@@ -13,7 +13,7 @@
     "url": "git+https://github.com/ajohnson25/food-selector.git"
   },
   "author": "Adam Johnson",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ajohnson25/food-selector/issues"
   },

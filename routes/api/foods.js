@@ -5,6 +5,8 @@ const foods = require('../../Foods');
 // Gets All Foods
 router.get('/', (req, res) => res.json(foods));
 
+router.get('/count', (req, res) => res.json(foods.length));
+
 // Get Single Food
 router.get('/:id', (req, res) => {
     const found = foods.some(food => food.id === parseInt(req.params.id));
