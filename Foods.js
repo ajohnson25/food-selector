@@ -1,5 +1,3 @@
-/* eslint-disable semi */
-
 const foods = [
   {
     id: 1,

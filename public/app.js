@@ -1,4 +1,3 @@
-/* eslint-disable semi */
 let id = 0;
 let resultArray = [];
 let foodOrderArray = [];
@@ -22,7 +21,7 @@ function app () {
 
   // create an array with the food count and then shuffle it to randomize
   for (let i = 1; i <= foodCount; i++) {
-    foodOrderArray = [i, ...foodOrderArray]
+    foodOrderArray = [i, ...foodOrderArray];
   }
   shuffle(foodOrderArray);
 
@@ -43,11 +42,11 @@ function setFoodCount () {
     } else if (this.status === 404) {
       document.getElementById('text').innerHTML = 'Not Found';
     }
-  }
+  };
 
   xhr.onerror = function () {
     console.log('Request Error from setFoodCount()...');
-  }
+  };
 
   xhr.send();
 }
@@ -57,10 +56,10 @@ function submitFood (text) {
   foodName = document.querySelector('#food-name');
   const nameInHTML = foodName.innerText;
   // store the results here
-  console.log(foodName.innerText)
-  resultArray = [...resultArray, { id, nameInHTML, text }]
+  console.log(foodName.innerText);
+  resultArray = [...resultArray, { id, nameInHTML, text }];
   // show the next one and show the results if we went through all of the foods
-  showNextFood()
+  showNextFood();
 }
 
 /**
@@ -82,18 +81,18 @@ function showNextFood () {
       } else if (this.status === 404) {
         document.getElementById('text').innerHTML = 'Not Found';
       }
-    }
+    };
 
     xhr.onerror = function () {
       console.log('Request Error from showNextFood()...');
-    }
+    };
 
     xhr.send();
     id = id + 1;
   } else {
     const content = document.querySelector('#content');
     console.log(resultArray);
-    resultArray.forEach(element => { resultString = resultString + `<p>${element.nameInHTML} : ${element.text}</p>` });
+    resultArray.forEach(element => { resultString = resultString + `<p>${element.nameInHTML} : ${element.text}</p>`; });
     content.innerHTML = resultString;
   }
 }
