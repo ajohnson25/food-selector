@@ -7,6 +7,7 @@ let foodCount = 0;
 let foodImage;
 let foodName;
 let content;
+let currentFoodItem = [];
 
 /**
  * The main app constructor
@@ -16,7 +17,6 @@ function app () {
   foodName = document.querySelector('#food-name');
   unsplashTag = document.querySelector('#unsplash-tag');
   content = document.querySelector('#content');
-
   setFoodCount();
 
   // create an array with the food count and then shuffle it to randomize
@@ -26,6 +26,10 @@ function app () {
   shuffle(foodOrderArray);
 
   showNextFood();
+  FB.getLoginStatus( function(response) {
+    console.log(response);
+});
+
 }
 
 /**
@@ -54,9 +58,8 @@ function setFoodCount () {
 function submitFood (text) {
   foodImage = document.querySelector('#food-image');
   foodName = document.querySelector('#food-name');
-  const nameInHTML = foodName.innerText;
+  const nameInHTML = currentFoodItem.name;
   // store the results here
-  console.log(foodName.innerText);
   resultArray = [...resultArray, { id, nameInHTML, text }];
   // show the next one and show the results if we went through all of the foods
   showNextFood();
@@ -73,10 +76,11 @@ function showNextFood () {
     xhr.onload = function () {
       if (this.status === 200) {
         const currentFood = JSON.parse(this.responseText);
-        foodImage.src = 'images/' + currentFood[0].image;
-        foodImage.alt = currentFood[0].name;
-        foodName.innerText = currentFood[0].name;
-        unsplashTagConstructor(currentFood[0].imageAttribution);
+        currentFoodItem = currentFood[0];
+        foodImage.src = 'images/' + currentFoodItem.image;
+        foodImage.alt = currentFoodItem.name;
+        foodName.innerText = currentFoodItem.name;
+        unsplashTagConstructor(currentFoodItem.imageAttribution);
         content.style.display = 'block';
       } else if (this.status === 404) {
         document.getElementById('text').innerHTML = 'Not Found';
