@@ -34,4 +34,13 @@ body {
 #result-header {
   color: #efefef;
 }
+
+.navbar-icons {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.danger-text {
+  color: red;
+}
 /*# sourceMappingURL=style.css.map */

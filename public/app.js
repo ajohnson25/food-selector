@@ -12,7 +12,9 @@ let currentFoodItem = [];
 /**
  * The main app constructor
  */
+
 function app () {
+  M.AutoInit();
   foodImage = document.querySelector('#food-image');
   foodName = document.querySelector('#food-name');
   unsplashTag = document.querySelector('#unsplash-tag');

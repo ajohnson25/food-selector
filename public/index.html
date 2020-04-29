@@ -11,19 +11,29 @@
     <script src="app.js"></script>
 </head>
 <body onLoad="app()">
+
   <nav class="orange lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">Food Selector</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#"></a></li> <!-- user logon/logoff goes here-->
+    <div class="nav-wrapper container"><a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><img src="images/bars-solid.svg" width="64px" height="64px" class="navbar-icons"></a><a id="logo-container" href="/" class="brand-logo">Food Selector</a>
+      <ul class="right">
+        <!--<li><img src="images/user-solid.svg" width="64px" height="64px" class="navbar-icons"></li>  user logon/logoff goes here-->
       </ul>
 
-      <ul id="nav-mobile" class="sidenav">
-        <li><a href="#"></a></li>
-      </ul>
-      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons"></i></a> <!-- menu icon for mobile goes here-->
+      <!--<a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons"></i><img src="images/bars-solid.svg" width="100px" height="100px"></svg>menu</a> menu icon for mobile goes here-->
     </div>
   </nav>
-</nav>
+
+  <ul id="slide-out-right" class="sidenav">
+    <li><a href="#!">Log in</a></li>
+    <li><a href="#!">Log out</a></li>
+  </ul>
+
+  <ul id="slide-out" class="sidenav">
+    <li><a href="#">Select Foods (to be implemented)</a></li>
+    <li><a href="#">Show List (to be implemented)</a></li>
+    <li><a href="#">Save List (to be implemented)</a></li>
+    <li><a href="#"><span class="danger-text">Delete All Data</span> (to be implemented)</a></li>
+  </ul>
+
     <div class="container" id="content">
         <div id="food" class="col s12">
         <img class="responsive-img" id="food-image">
