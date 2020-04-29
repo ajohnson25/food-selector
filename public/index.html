@@ -4,21 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/materialize.css" />
     <title>Food Selector</title>
+
     <script src="app.js"></script>
 </head>
 <body onLoad="app()">
-    <div id="content">
-        <div id="food">
-        <img id="food-image">
-        <a id="unsplash-tag"></a>
-        </div>
-        <p id="food-name"></p>
-        <div id="buttons">
-            <button id="yes" class="selector-button" onClick="submitFood('Like')">Like</button>
-            <button id="not-applicable" class="selector-button" onClick="submitFood('Haven\'t had')">Haven't had</button>
-            <button id="no" class="selector-button" onClick="submitFood('Don\'t like')">Don't like</button>
-        </div>
+  <nav class="orange lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">Food Selector</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#"></a></li> <!-- user logon/logoff goes here-->
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href="#"></a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons"></i></a> <!-- menu icon for mobile goes here-->
     </div>
+  </nav>
+</nav>
+    <div class="container" id="content">
+        <div id="food" class="col s12">
+        <img class="responsive-img" id="food-image">
+        </div>
+        <div class="row">
+        <p class="col s9" id="food-name"></p>
+        <div class="col s3">
+        <a id="unsplash-tag"></a>
+      </div>
+        </div>
+        <div class="row">
+        <button class="btn waves-effect waves-light col s4" id="yes" onClick="submitFood('Like')">Like</button>
+        <button class="btn waves-effect waves-light col s4"  id="not-applicable" onClick="submitFood('Haven\'t had')">Haven't had</button>
+        <button class="btn waves-effect waves-light col s4"  id="no" onClick="submitFood('Don\'t like')">Don't like</button>
+      </div>
+    </div>
+    <script type="text/javascript" src="js/bin/materialize.min.js"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 let id = 0;
 let resultArray = [];
 let foodOrderArray = [];
-let resultString = '<h1>Results</h1>';
+let resultString = '<h1 id="result-header">Results</h1>';
 let unsplashTag;
 let foodCount = 0;
 let foodImage;
@@ -26,9 +26,6 @@ function app () {
   shuffle(foodOrderArray);
 
   showNextFood();
-  FB.getLoginStatus( function(response) {
-    console.log(response);
-});
 
 }
 
@@ -96,7 +93,7 @@ function showNextFood () {
   } else {
     const content = document.querySelector('#content');
     console.log(resultArray);
-    resultArray.forEach(element => { resultString = resultString + `<p>${element.nameInHTML} : ${element.text}</p>`; });
+    resultArray.forEach(element => { resultString = resultString + `<p class="result-name">${element.nameInHTML} : ${element.text}</p>`; });
     content.innerHTML = resultString;
   }
 }
