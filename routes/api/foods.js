@@ -1,4 +1,3 @@
-/* eslint-disable semi */
 const express = require('express');
 const router = express.Router();
 const foods = require('../../Foods');
