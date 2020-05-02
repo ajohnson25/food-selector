@@ -21,8 +21,6 @@ class FoodItems {
     unsplashTag = document.querySelector('#unsplash-tag');
     content = document.querySelector('#content');
 
-    
-
     this.setFoodCount();
 
     // create an array with the food count and then shuffle it to randomize
@@ -73,8 +71,6 @@ class FoodItems {
  * Get the next food item from the list until there are no more, then display the results
  */
   showNextFood () {
-    console.log(foodCount);
-    console.log(resultArray);
     if (id < foodCount) {
       const xhr = new XMLHttpRequest();
       xhr.open('GET', `/api/foods/${foodOrderArray[id]}`, true);
@@ -101,7 +97,6 @@ class FoodItems {
       id = id + 1;
     } else {
       const content = document.querySelector('#content');
-      console.log(resultArray);
       resultArray.forEach(element => { resultString = resultString + `<p class="result-name">${element.nameInHTML} : ${element.text}</p>`; });
       content.innerHTML = resultString;
     }
