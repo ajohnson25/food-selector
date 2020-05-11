@@ -1,7 +1,11 @@
 import React from 'react';
 import Nav from './Nav';
+import Food from './Food';
 
 const App = ({ title }) =>
-  <Nav title = {title}/>;
+  <div>
+    <Nav title = {title}/>
+    <Food />
+  </div>;
 
 export default App;
