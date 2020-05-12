@@ -11,7 +11,7 @@ M.AutoInit();
 
 ReactDOM.render(
     <App title={title} />,
-    document.getElementById('app')
+    document.getElementById('root')
 );
 
 module.hot.accept();

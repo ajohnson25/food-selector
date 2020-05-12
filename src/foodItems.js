@@ -24,7 +24,7 @@ class FoodItems {
     this.shuffle(foodOrderArray);
   }
 
-  getCurrentFoodItem(){
+  getCurrentFoodItem () {
     return currentFoodItem;
   }
 
@@ -53,7 +53,11 @@ class FoodItems {
   submitFood (id, foodName, response) {
     // store the results here
     resultArray = [...resultArray, { id, foodName, response }];
-    // show the next one and show the results if we went through all of the foods
+    window.localStorage.removeItem('results');
+    window.localStorage.setItem('results', JSON.stringify(resultArray));
+  }
+
+  showFirstFood () {
     this.showNextFood();
   }
 
@@ -72,17 +76,17 @@ class FoodItems {
           document.getElementById('text').innerHTML = 'Not Found';
         }
       };
-  
+
       xhr.onerror = function () {
         console.log('Request Error from showNextFood()...');
       };
-  
+
       xhr.send();
       id = id + 1;
+      return true;
     } else {
-      console.log('done');
       resultArray.forEach(element => { resultString = resultString + `<p class="result-name">${element.nameInHTML} : ${element.text}</p>`; });
-      console.log(resultArray);
+      return false;
     }
   }
 
