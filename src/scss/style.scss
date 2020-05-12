@@ -41,3 +41,30 @@ body {
 .danger-text {
     color: red;
 }
+
+.unsplash {
+    display:inline-block;
+    padding:2px 3px
+}
+
+#unsplash-tag {
+    background-color:black;
+    color:white;
+    text-decoration:none;
+    padding:4px 6px;
+    font-family:-apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Ubuntu, Roboto, Noto, "Segoe UI", Arial, sans-serif;
+    font-size:12px;
+    font-weight:bold;
+    line-height:1.2;
+    display:inline-block;
+    border-radius:3px
+}
+
+#unsplash-svg {
+    height:12px;
+    width:auto;
+    position:relative;
+    vertical-align:middle;
+    top:-2px;
+    fill:white
+}

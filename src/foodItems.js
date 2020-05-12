@@ -15,32 +15,25 @@ let currentFoodItem = [];
 
 class FoodItems {
   constructor () {
-    M.AutoInit();
-    foodImage = document.querySelector('#food-image');
-    foodName = document.querySelector('#food-name');
-    unsplashTag = document.querySelector('#unsplash-tag');
-    content = document.querySelector('#content');
-
-    this.setFoodCount();
+    this.getFoodCount();
 
     // create an array with the food count and then shuffle it to randomize
     for (let i = 1; i <= foodCount; i++) {
       foodOrderArray = [i, ...foodOrderArray];
     }
     this.shuffle(foodOrderArray);
-    this.showNextFood();
-    document.querySelector('#yes').addEventListener('click', () => this.submitFood('Like'));
-    document.querySelector('#not-applicable').addEventListener('click', () => this.submitFood("Haven't Had"));
-    document.querySelector('#no').addEventListener('click', () => this.submitFood("Don't Like"));
+  }
+
+  getCurrentFoodItem () {
+    return currentFoodItem;
   }
 
   /**
   * Get the count of foods from the server
   */
-  setFoodCount () {
+  getFoodCount () {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', '/api/foods/count', false);
-
     xhr.onload = function () {
       if (this.status === 200) {
         const count = JSON.parse(this.responseText);
@@ -57,13 +50,14 @@ class FoodItems {
     xhr.send();
   }
 
-  submitFood (text) {
-    foodImage = document.querySelector('#food-image');
-    foodName = document.querySelector('#food-name');
-    const nameInHTML = currentFoodItem.name;
+  submitFood (id, foodName, response) {
     // store the results here
-    resultArray = [...resultArray, { id, nameInHTML, text }];
-    // show the next one and show the results if we went through all of the foods
+    resultArray = [...resultArray, { id, foodName, response }];
+    window.localStorage.removeItem('results');
+    window.localStorage.setItem('results', JSON.stringify(resultArray));
+  }
+
+  showFirstFood () {
     this.showNextFood();
   }
 
@@ -73,32 +67,26 @@ class FoodItems {
   showNextFood () {
     if (id < foodCount) {
       const xhr = new XMLHttpRequest();
-      xhr.open('GET', `/api/foods/${foodOrderArray[id]}`, true);
-  
+      xhr.open('GET', `/api/foods/${foodOrderArray[id]}`, false);
       xhr.onload = function () {
         if (this.status === 200) {
           const currentFood = JSON.parse(this.responseText);
           currentFoodItem = currentFood[0];
-          foodImage.src = 'images/' + currentFoodItem.image;
-          foodImage.alt = currentFoodItem.name;
-          foodName.innerText = currentFoodItem.name;
-          unsplashTagConstructor(currentFoodItem.imageAttribution);
-          content.style.display = 'block';
         } else if (this.status === 404) {
           document.getElementById('text').innerHTML = 'Not Found';
         }
       };
-  
+
       xhr.onerror = function () {
         console.log('Request Error from showNextFood()...');
       };
-  
+
       xhr.send();
       id = id + 1;
+      return true;
     } else {
-      const content = document.querySelector('#content');
       resultArray.forEach(element => { resultString = resultString + `<p class="result-name">${element.nameInHTML} : ${element.text}</p>`; });
-      content.innerHTML = resultString;
+      return false;
     }
   }
 
@@ -119,15 +107,6 @@ class FoodItems {
 
     return array;
   }
-}
-
-function unsplashTagConstructor (imageAttribution) {
-  unsplashTag.style = 'background-color:black;color:white;text-decoration:none;padding:4px 6px;font-family:-apple-system, BlinkMacSystemFont, &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, Helvetica, Ubuntu, Roboto, Noto, &quot;Segoe UI&quot;, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:1.2;display:inline-block;border-radius:3px';
-  unsplashTag.href = `https://unsplash.com/${imageAttribution[0]}?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge`;
-  unsplashTag.target = '_blank';
-  unsplashTag.rel = 'noopener noreferrer';
-  unsplashTag.title = `Download free do whatever you want high-resolution photos from ${imageAttribution[0]}`;
-  unsplashTag.innerHTML = `<span style="display:inline-block;padding:2px 3px"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-2px;fill:white" viewBox="0 0 32 32"><title>unsplash-logo</title><path d="M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z"></path></svg></span><span style="display:inline-block;padding:2px 3px">${imageAttribution[1]}</span>`;
 }
 
 export default FoodItems;
