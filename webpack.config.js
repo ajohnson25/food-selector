@@ -8,7 +8,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: ['ts-loader']
+      },
+      {
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: ['babel-loader']
       },
@@ -33,7 +38,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx']
+    extensions: ['*', '.js', '.jsx', '.ts', '.tsx']
   },
   plugins: [
     new HtmlWebpackPlugin(
@@ -49,7 +54,7 @@ module.exports = {
       }
     ),
     new CopyWebpackPlugin(
-        [{ from: 'images', to: 'images' }]
+      [{ from: 'images', to: 'images' }]
     )
   ],
   output: {
@@ -60,5 +65,6 @@ module.exports = {
   devServer: {
     contentBase: './dist',
     hot: true
-  }
+  },
+  devtool: 'source-map'
 };

@@ -1,18 +1,12 @@
-// @flow
 /*!
  * Food selector main
  */
 
-let id = 0;
-let resultArray = [];
-let foodOrderArray = [];
-let resultString = '<h1 id="result-header">Results</h1>';
-let unsplashTag;
-let foodCount = 0;
-let foodImage;
-let foodName;
-let content;
-let currentFoodItem = [];
+let id: number = 0;
+let resultArray: any[] = [];
+let foodOrderArray: number[] = [];
+let foodCount: number = 0;
+let currentFoodItem: any[] = [];
 
 class FoodItems {
   constructor () {
@@ -33,7 +27,7 @@ class FoodItems {
   * Get the count of foods from the server
   */
   getFoodCount () {
-    const xhr = new XMLHttpRequest();
+    const xhr: XMLHttpRequest = new XMLHttpRequest();
     xhr.open('GET', '/api/foods/count', false);
     xhr.onload = function () {
       if (this.status === 200) {
@@ -58,16 +52,16 @@ class FoodItems {
     window.localStorage.setItem('results', JSON.stringify(resultArray));
   }
 
-  showFirstFood () {
-    this.showNextFood();
+  showFirstFood (): boolean {
+    return this.showNextFood();
   }
 
   /**
  * Get the next food item from the list until there are no more, then display the results
  */
-  showNextFood () {
+  showNextFood (): boolean {
     if (id < foodCount) {
-      const xhr = new XMLHttpRequest();
+      const xhr: XMLHttpRequest = new XMLHttpRequest();
       xhr.open('GET', `/api/foods/${foodOrderArray[id]}`, false);
       xhr.onload = function () {
         if (this.status === 200) {
@@ -93,8 +87,8 @@ class FoodItems {
   /**
  * Fisher-Yates / Knuth shuffle
  */
-  shuffle (array: any) {
-    let currentIndex = array.length; let temporaryValue; let randomIndex;
+  shuffle (array: number[]) {
+    let currentIndex: number = array.length; let temporaryValue: number; let randomIndex: number;
 
     while (currentIndex !== 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
