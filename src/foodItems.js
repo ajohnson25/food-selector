@@ -1,3 +1,4 @@
+// @flow
 /*!
  * Food selector main
  */
@@ -39,7 +40,7 @@ class FoodItems {
         const count = JSON.parse(this.responseText);
         foodCount = count;
       } else if (this.status === 404) {
-        document.getElementById('text').innerHTML = 'Not Found';
+        console.log('Not Found');
       }
     };
 
@@ -50,7 +51,7 @@ class FoodItems {
     xhr.send();
   }
 
-  submitFood (id, foodName, response) {
+  submitFood (id: number, foodName: string, response: string) {
     // store the results here
     resultArray = [...resultArray, { id, foodName, response }];
     window.localStorage.removeItem('results');
@@ -73,7 +74,7 @@ class FoodItems {
           const currentFood = JSON.parse(this.responseText);
           currentFoodItem = currentFood[0];
         } else if (this.status === 404) {
-          document.getElementById('text').innerHTML = 'Not Found';
+          console.log('Not Found');
         }
       };
 
@@ -85,7 +86,6 @@ class FoodItems {
       id = id + 1;
       return true;
     } else {
-      resultArray.forEach(element => { resultString = resultString + `<p class="result-name">${element.nameInHTML} : ${element.text}</p>`; });
       return false;
     }
   }
@@ -93,7 +93,7 @@ class FoodItems {
   /**
  * Fisher-Yates / Knuth shuffle
  */
-  shuffle (array) {
+  shuffle (array: any) {
     let currentIndex = array.length; let temporaryValue; let randomIndex;
 
     while (currentIndex !== 0) {
