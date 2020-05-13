@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import ButtonRow from './ButtonRow';
 import FoodItems from './foodItems';
 import FoodImage from './FoodImage';
 
+
 const foodItems = new FoodItems();
 
-class Food extends Component {
+class Food extends React.Component<any,any> {
   constructor (props) {
     super(props);
     foodItems.showFirstFood();
@@ -24,7 +25,7 @@ class Food extends Component {
 
 
 
-  handleClick (e) {
+  handleClick (e: any) {
     e.preventDefault();
     foodItems.submitFood(this.state.foodItem.id, this.state.foodName, e.target.value);
     this.props.hasMoreFoods(foodItems.showNextFood());

@@ -6,7 +6,7 @@ let id: number = 0;
 let resultArray: any[] = [];
 let foodOrderArray: number[] = [];
 let foodCount: number = 0;
-let currentFoodItem: any[] = [];
+let currentFoodItem: any = [];
 
 class FoodItems {
   constructor () {

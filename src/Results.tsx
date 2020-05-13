@@ -1,6 +1,14 @@
-import React, { Component } from 'react';
+import * as React from "react";
 
-class Results extends React.Component {
+interface Props{
+  results: string
+}
+
+interface State{
+  results: any[]
+}
+
+class Results extends React.Component<Props,State> {
   constructor (props) {
     super(props);
     this.state = {

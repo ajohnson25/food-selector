@@ -1,7 +1,13 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import UnsplashTag from './UnsplashTag';
 
-class FoodImage extends Component {
+interface Props{
+  imageLocation: string,
+  foodName: string,
+  imageAttribution: string[]
+}
+
+class FoodImage extends React.Component<Props>{
   render () {
     return <div id="food" className="col s12">
       <img className="responsive-img" id="food-image" src={this.props.imageLocation} />

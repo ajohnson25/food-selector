@@ -1,6 +1,10 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 
-class UnsplashTag extends Component {
+interface Props{
+  imageAttribution: string[]
+}
+
+class UnsplashTag extends React.Component<Props> {
   render () {
     return <div>
       <a id="unsplash-tag"

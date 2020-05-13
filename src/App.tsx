@@ -1,15 +1,26 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import Nav from './Nav';
 import Food from './Food';
 import Results from './Results';
 
-class App extends React.Component {
+
+interface Props{
+  title: string;
+}
+
+interface State{
+  title: string;
+  hasMoreFoods: string; //TODO:Need to turn into boolean later
+  results: string|null;
+}
+
+class App extends React.Component<Props, State> {
   constructor (props) {
     super(props);
     this.state = {
       title: this.props.title,
       hasMoreFoods: 'true',
-      results: []
+      results: ''
     };
   }
 
@@ -18,7 +29,7 @@ class App extends React.Component {
     this.setState({ results: window.localStorage.getItem('results') });
   }
 
-  render (title) {
+  render () {
     return <div>
       <Nav title = {this.state.title} />
       {this.state.hasMoreFoods ? <Food hasMoreFoods={this.checkHasMoreFoods.bind(this)}/> : <Results results={this.state.results}/>}

@@ -6,12 +6,12 @@ import materialize from './materialize/js/bin/materialize';
 import './scss/style.scss';
 import './scss/materialize.scss';
 
-const title = 'Food Selector'; 
+const title = 'Food Selector';
 M.AutoInit();
 
 ReactDOM.render(
-    <App title={title} />,
-    document.getElementById('root')
+  <App title={title} />,
+  document.getElementById('root')
 );
 
 module.hot.accept();
