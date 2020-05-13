@@ -11,7 +11,7 @@ interface Props{
 interface State{
   title: string;
   hasMoreFoods: string; //TODO:Need to turn into boolean later
-  results: string|null;
+  results: string;
 }
 
 class App extends React.Component<Props, State> {
