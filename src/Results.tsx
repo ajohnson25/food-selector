@@ -9,7 +9,7 @@ interface State{
 }
 
 class Results extends React.Component<Props,State> {
-  constructor (props) {
+  constructor (props: any) {
     super(props);
     this.state = {
       results: JSON.parse(this.props.results)

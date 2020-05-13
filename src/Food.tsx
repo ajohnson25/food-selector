@@ -7,7 +7,7 @@ import FoodImage from './FoodImage';
 const foodItems = new FoodItems();
 
 class Food extends React.Component<any,any> {
-  constructor (props) {
+  constructor (props: any) {
     super(props);
     foodItems.showFirstFood();
     this.state = {

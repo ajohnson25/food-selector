@@ -15,7 +15,7 @@ interface State{
 }
 
 class App extends React.Component<Props, State> {
-  constructor (props) {
+  constructor (props: any) {
     super(props);
     this.state = {
       title: this.props.title,
@@ -24,7 +24,7 @@ class App extends React.Component<Props, State> {
     };
   }
 
-  checkHasMoreFoods (hasMoreFoods) {
+  checkHasMoreFoods (hasMoreFoods: string) {
     this.setState({ hasMoreFoods });
     this.setState({ results: window.localStorage.getItem('results') ?? '' });
   }

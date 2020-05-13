@@ -22,7 +22,8 @@
   "babel": {
     "presets": [
       "@babel/preset-env",
-      "@babel/preset-react"
+      "@babel/preset-react",
+      "@babel/preset-typescript"
     ]
   },
   "homepage": "https://github.com/ajohnson25/food-selector#readme",
@@ -49,12 +50,12 @@
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "source-map-loader": "^0.2.4",
-    "ts-loader": "^7.0.4",
     "typescript": "^3.9.2",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
+    "@babel/preset-typescript": "^7.9.0",
     "@types/materialize-css": "^1.0.7",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
