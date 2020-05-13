@@ -26,7 +26,7 @@ class App extends React.Component<Props, State> {
 
   checkHasMoreFoods (hasMoreFoods) {
     this.setState({ hasMoreFoods });
-    this.setState({ results: window.localStorage.getItem('results') });
+    this.setState({ results: window.localStorage.getItem('results') ?? '' });
   }
 
   render () {
