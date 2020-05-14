@@ -2,12 +2,13 @@
   "name": "food-selector",
   "version": "1.0.0",
   "description": "Polls users on their food preferences",
-  "main": "indexServer.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node indexServer",
-    "dev": "nodemon indexServer",
+    "start": "node index",
+    "dev": "nodemon index",
     "test": "jest --passWithNoTests",
     "build": "webpack --config ./webpack.config.js --mode production",
+    "buildDev": "webpack --config ./webpack.config.js --mode development --watch",
     "lint": "eslint src/*.js src/*.ts src/*.tsx"
   },
   "repository": {
@@ -66,8 +67,6 @@
     "knex": "^0.21.1",
     "pg": "^8.2.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "webpack-dev-middleware": "^3.7.2",
-    "webpack-hot-middleware": "^2.25.0"
+    "react-dom": "^16.13.1"
   }
 }
