@@ -6,4 +6,4 @@
 
 Food selector is a Express/React/Node.js application currently under development that asks if a user likes, doesn't like, or hasn't had a food from a list that has a variety of foods.
 
-The project also uses the Typescript.
+The project also uses Typescript for static types.
