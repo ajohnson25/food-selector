@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index",
     "dev": "nodemon index",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "build": "webpack --config ./webpack.config.js --mode production",
     "buildDev": "webpack --config ./webpack.config.js --mode development --watch"
   },
