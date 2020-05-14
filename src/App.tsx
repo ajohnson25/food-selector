@@ -3,14 +3,14 @@ import Nav from './Nav';
 import Food from './Food';
 import Results from './Results';
 
-
 interface Props{
   title: string;
 }
 
 interface State{
   title: string;
-  hasMoreFoods: string; //TODO:Need to turn into boolean later
+  // TODO:Need to turn into boolean later
+  hasMoreFoods: string;
   results: string;
 }
 

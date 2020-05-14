@@ -7,7 +7,7 @@ interface Props{
   imageAttribution: string[]
 }
 
-class FoodImage extends React.Component<Props>{
+class FoodImage extends React.Component<Props> {
   render () {
     return <div id="food" className="col s12">
       <img className="responsive-img" id="food-image" src={this.props.imageLocation} />

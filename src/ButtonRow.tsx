@@ -1,12 +1,12 @@
 import * as React from 'react';
 
 interface ButtonRowProps {
-  options: string[]
+  options: string[],
   onClick: any
 }
 
 interface ButtonProps {
-  option: any
+  option: any,
   onClick: any
 }
 

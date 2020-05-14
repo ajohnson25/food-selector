@@ -3,10 +3,9 @@ import ButtonRow from './ButtonRow';
 import FoodItems from './foodItems';
 import FoodImage from './FoodImage';
 
-
 const foodItems = new FoodItems();
 
-class Food extends React.Component<any,any> {
+class Food extends React.Component<any, any> {
   constructor (props: any) {
     super(props);
     foodItems.showFirstFood();
@@ -22,8 +21,6 @@ class Food extends React.Component<any,any> {
       imageAttribution: [foodItems.getCurrentFoodItem().imageAttribution[0], foodItems.getCurrentFoodItem().imageAttribution[1]]
     };
   }
-
-
 
   handleClick (e: any) {
     e.preventDefault();
