@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ButtonRow from './ButtonRow';
-import FoodItems from './foodItems';
+import FoodItems from '../foodItems';
 import FoodImage from './FoodImage';
 
 const foodItems = new FoodItems();

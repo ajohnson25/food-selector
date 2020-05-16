@@ -4,12 +4,13 @@
   "description": "Polls users on their food preferences",
   "main": "index.js",
   "scripts": {
-    "start": "node index",
-    "dev": "nodemon index",
+    "start": "node dist_node/index.js",
+    "dev": "nodemon node_ts/index.ts",
     "test": "jest --passWithNoTests",
-    "build": "webpack --config ./webpack.config.js --mode production",
-    "buildDev": "webpack --config ./webpack.config.js --mode development --watch",
-    "lint": "eslint src/*.js src/*.ts src/*.tsx"
+    "build": "npx babel node_ts --out-dir dist_node --extensions .ts,.tsx && webpack --config ./webpack.config.js --mode production",
+    "webpackDev": "webpack --config ./webpack.config.js --mode development --watch",
+    "lint": "eslint src/*.js src/*.ts src/components/*.tsx",
+    "check-types": "tsc"
   },
   "repository": {
     "type": "git",
@@ -25,13 +26,26 @@
       "@babel/preset-env",
       "@babel/preset-react",
       "@babel/preset-typescript"
+    ],
+    "plugins": [
+      "@babel/proposal-class-properties",
+      "@babel/proposal-object-rest-spread"
     ]
   },
   "homepage": "https://github.com/ajohnson25/food-selector#readme",
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.6",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-react": "^7.9.4",
+    "@babel/preset-typescript": "^7.9.0",
+    "@types/express": "^4.17.6",
+    "@types/materialize-css": "^1.0.7",
+    "@types/node": "^14.0.1",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.0.1",
     "babel-loader": "^8.1.0",
@@ -58,15 +72,12 @@
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
-    "@babel/preset-typescript": "^7.9.0",
-    "@types/materialize-css": "^1.0.7",
-    "@types/react": "^16.9.35",
-    "@types/react-dom": "^16.9.8",
     "axios": "^0.19.2",
     "express": "^4.17.1",
     "knex": "^0.21.1",
     "pg": "^8.2.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "ts-node": "^8.10.1"
   }
 }

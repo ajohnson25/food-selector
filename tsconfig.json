@@ -3,7 +3,7 @@
         "outDir": "./dist/",
         "sourceMap": true,
         "strict": true,
-        "module": "es6",
+        "module": "commonjs",
         "moduleResolution": "node",
         "jsx": "react",
         "target": "esnext",
@@ -13,6 +13,7 @@
         "esModuleInterop": true
     },
     "include": [
-        "./src/"
+        "./src/",
+        "./node-ts/"
     ]
 }

@@ -1,4 +1,6 @@
 node_modules/*
 imgsrc/*
 dist/*
+dist_node/*
 .vs/*
+.vscode/*
