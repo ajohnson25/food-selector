@@ -66,7 +66,8 @@ class FoodItems {
       xhr.onload = function () {
         if (this.status === 200) {
           const currentFood = JSON.parse(this.responseText);
-          currentFoodItem = currentFood[0];
+          console.log(currentFood);
+          currentFoodItem = currentFood;
         } else if (this.status === 404) {
           console.log('Not Found');
         }

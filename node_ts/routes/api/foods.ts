@@ -1,23 +1,28 @@
-import express from 'express';
+import Router from 'express-promise-router';
 
-
-const router = express.Router();
+const router: any = Router();
 const foods: any = require('../../Foods');
+const db: any = require('../../db');
 
 // Gets All Foods
-router.get('/', (req, res) => res.json(foods));
+router.get('/', async(req: any, res: any) => {
+  const { rows } = await db.query('SELECT * FROM foods');
+  res.send(rows)
+})
 
-router.get('/count', (req, res) => res.json(foods.length));
+
+router.get('/count', async(req: any, res: any) => {
+  const { rows } = await db.query('SELECT count(*) FROM foods');
+  res.send(rows[0].count);
+})
+
 
 // Get Single Food
-router.get('/:id', (req, res) => {
-  const found = foods.some((food: any) => food.id === parseInt(req.params.id));
 
-  if (found) {
-    res.json(foods.filter((food: any) => food.id === parseInt(req.params.id)));
-  } else {
-    res.status(400).json({ msg: `No member with the id of ${req.params.id}` });
-  }
-});
+router.get('/:id', async(req:any, res:any) => {
+  const { id } = req.params;
+  const { rows } = await db.query(`SELECT * FROM foods where id = ${id}`);
+  res.send(rows[0]);
+})
 
 module.exports = router;

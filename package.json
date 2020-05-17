@@ -9,7 +9,7 @@
     "test": "jest --passWithNoTests",
     "build": "npx babel node_ts --out-dir dist_node --extensions .ts,.tsx && webpack --config ./webpack.config.js --mode production",
     "webpackDev": "webpack --config ./webpack.config.js --mode development --watch",
-    "lint": "eslint src/*.js src/*.ts src/components/*.tsx",
+    "lint": "eslint src/*.js src/*.ts src/components/*.tsx node_ts/*.ts node_ts/**/*.ts",
     "check-types": "tsc"
   },
   "repository": {
@@ -61,7 +61,7 @@
     "html-webpack-plugin": "^4.3.0",
     "jest": "^26.0.1",
     "mini-css-extract-plugin": "^0.9.0",
-    "nodemon": "^2.0.3",
+    "nodemon": "^2.0.4",
     "postcss-loader": "^3.0.0",
     "react-hot-loader": "^4.12.21",
     "sass": "^1.26.5",
@@ -74,8 +74,9 @@
   "dependencies": {
     "axios": "^0.19.2",
     "express": "^4.17.1",
+    "express-promise-router": "^3.0.3",
     "knex": "^0.21.1",
-    "pg": "^8.2.0",
+    "pg": "^8.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "ts-node": "^8.10.1"
