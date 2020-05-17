@@ -17,7 +17,7 @@ router.get('/count', async (req: any, res: any) => {
 // Get Single Food
 router.get('/:id', async (req:any, res:any) => {
   const { id } = req.params;
-  const { rows } = await db.query('SELECT * FROM foods where id = $1',[id]);
+  const { rows } = await db.query('SELECT * FROM foods where id = $1', [id]);
   res.send(rows[0]);
 });
 
