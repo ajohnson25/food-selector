@@ -73,12 +73,14 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "core-js": "^3.6.5",
     "express": "^4.17.1",
     "express-promise-router": "^3.0.3",
     "knex": "^0.21.1",
     "pg": "^8.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "regenerator-runtime": "^0.13.5",
     "ts-node": "^8.10.1"
   }
 }

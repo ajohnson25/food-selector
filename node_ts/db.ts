@@ -1,4 +1,4 @@
-const { Pool } = require('pg');
+export const { Pool } = require('pg');
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL || 'postgres://postgres:postgres@localhost:5433/foodSelector',
@@ -6,5 +6,5 @@ const pool = new Pool({
 });
 
 module.exports = {
-  query: (text, params) => pool.query(text, params)
+  query: (text: any, params: any) => pool.query(text, params)
 };
