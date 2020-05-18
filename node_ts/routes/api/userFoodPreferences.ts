@@ -1,48 +1,44 @@
-import express from 'express';
-const router = express.Router();
+import Router from 'express-promise-router';
+
+const router: any = Router();
+const db: any = require('../../db');
 let foodPrefs: any[] = [];
 
 // Gets All Food Preferences
-router.get('/', (req, res) => res.json(foodPrefs));
+router.get('/', async (req: any, res: any) => {
+  const { rows } = await db.query('SELECT * FROM user_food_preferences');
+  res.send(rows)
+});
 
-router.get('/count', (req, res) => res.json(foodPrefs.length));
+router.get('/count', async (req: any, res: any) => {
+  const { rows } = await db.query('SELECT count(*) FROM user_food_preferences');
+  res.send(rows[0].count)
+});
 
 // Get a user's preferences
-router.get('/:userId', (req, res) => {
-  const found = foodPrefs.some(foodPref => foodPref.userId === req.params.userId);
-
-  if (found) {
-    res.json(foodPrefs.filter(foodPref => foodPref.userId === req.params.userId));
-  } else {
-    res.status(400).json({ msg: `No member with the uuid of ${req.params.userId}` });
-  }
+router.get('/:userUUID', async (req: any, res: any) => {
+    const { userUUID } = req.params.userUUID;
+    console.log(req.params.userId);
+    const { rows } = await db.query('SELECT * FROM user_food_preferences where user_uuid = $1',[userUUID]);
+    res.send(rows[0])
 });
 
 // Store food preference
-router.post('/', (req, res) => {
-  const newFoodPref = {
-    userId: req.query.userId,
-    foodId: req.query.foodId,
-    preference: req.query.preferenceId
-  };
-  console.log(req.query);
-  foodPrefs.push(newFoodPref);
-  res.json(foodPrefs);
+router.post('/:userUUID', async (req: any, res: any) => {
+  const { rows } = await db.query('INSERT INTO user_food_preferences (user_uuid, food_id, food_preference_id) values ($1,$2,$3)',[req.params.userUUID, req.body.foodId, req.body.foodPreferenceId]);
+  res.send(rows[0])
 });
 
-// Delete food preferences
-router.delete('/:userId', (req, res) => {
-  const found = foodPrefs.some(foodPref => foodPref.userId === req.params.userId);
+// Delete all food preferences for a uuid
+router.delete('/:userUUID', async (req: any, res: any) => {
+      const { rows } = await db.query('DELETE FROM user_food_preferences where user_uuid = $1',[req.params.userUUID]);
+      res.send(rows[0]);
+  });
 
-  if (found) {
-    foodPrefs = foodPrefs.filter(foodPref => foodPref.userId !== req.params.userId);
-    res.json({
-      msg: 'Preferences deleted',
-      foodPref: foodPrefs
-    });
-  } else {
-    res.status(400).json({ msg: `No member with the uuid of ${req.params.userId}` });
-  }
-});
+// Delete one food for a uuid
+router.delete('/:userUUID/:foodId', async (req: any, res: any) => {
+    const { rows } = await db.query('DELETE FROM user_food_preferences where user_uuid = $1 and food_id = $2',[req.params.userUUID, req.params.foodId]);
+    res.send(rows[0]);
+});  
 
 module.exports = router;
