@@ -54,6 +54,18 @@ export const foods = [
     image: 'sunnysideupeggs.jpg',
     imageProvider: 'Unsplash',
     imageAttribution: ['@saraheboudreau', 'Sarah Boudreau']
+  }, {
+    id: 9,
+    name: 'Kale',
+    image: 'kale.jpg',
+    imageProvider: 'Unsplash',
+    imageAttribution: ['@charbeck', 'Char Beck']
+  }, {
+    id: 10,
+    name: 'Tomatoes',
+    image: 'tomatoes.jpg',
+    imageProvider: 'Unsplash',
+    imageAttribution: ['@tomhermans', 'Tom Hermans']
   }
 ];
 

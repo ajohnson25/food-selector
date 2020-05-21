@@ -56,6 +56,20 @@ class FoodItems {
     return this.showNextFood();
   }
 
+  // Gets the source url based on what is provided.  Current options are local and gcp.
+  getSourceURL (provider: string): string {
+    let returnString:string;
+    if (provider === 'gcp') {
+      returnString = 'https://storage.googleapis.com/triple-nectar-274118.appspot.com/images/';
+    } else if (provider === 'local') {
+      returnString = 'images/';
+    } else {
+      console.log('Invalid provider supplied, returning local image source');
+      returnString = 'images/';
+    }
+    return returnString;
+  }
+
   /**
  * Get the next food item from the list until there are no more, then display the results
  */
@@ -66,7 +80,6 @@ class FoodItems {
       xhr.onload = function () {
         if (this.status === 200) {
           const currentFood = JSON.parse(this.responseText);
-          console.log(currentFood);
           currentFoodItem = currentFood;
         } else if (this.status === 404) {
           console.log('Not Found');

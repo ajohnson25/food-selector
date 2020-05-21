@@ -4,19 +4,19 @@ import FoodItems from '../foodItems';
 import FoodImage from './FoodImage';
 
 const foodItems = new FoodItems();
+const imageProviderURL = foodItems.getSourceURL('gcp');
 
 class Food extends React.Component<any, any> {
   constructor (props: any) {
     super(props);
     foodItems.showFirstFood();
-    console.log(foodItems.getCurrentFoodItem());
     this.state = {
       foodItem:
         foodItems.getCurrentFoodItem(),
       options:
          [{ shortText: 'like', text: 'Like' }, { shortText: 'havent-had', text: "Haven't Had" }, { shortText: 'dont-like', text: "Don't Like" }],
       imageLocation:
-         ['images/' + foodItems.getCurrentFoodItem().image_file],
+         [imageProviderURL + foodItems.getCurrentFoodItem().image_file],
       foodName:
          [foodItems.getCurrentFoodItem().name],
       imageAttribution: [foodItems.getCurrentFoodItem().image_attribution_username, foodItems.getCurrentFoodItem().image_attribution_fullname]
@@ -30,7 +30,7 @@ class Food extends React.Component<any, any> {
     // Set the information to the next food item retrieved through the submitFood called above
     this.setState({
       foodItem: foodItems.getCurrentFoodItem(),
-      imageLocation: ['images/' + foodItems.getCurrentFoodItem().image_file],
+      imageLocation: [imageProviderURL + foodItems.getCurrentFoodItem().image_file],
       foodName: [foodItems.getCurrentFoodItem().name],
       imageAttribution: [foodItems.getCurrentFoodItem().image_attribution_username, foodItems.getCurrentFoodItem().image_attribution_fullname]
     });
