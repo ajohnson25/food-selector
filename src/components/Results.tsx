@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 interface Props{
-  results: string
+
 }
 
 interface State{
@@ -12,7 +12,7 @@ class Results extends React.Component<Props, State> {
   constructor (props: any) {
     super(props);
     this.state = {
-      results: JSON.parse(this.props.results)
+      results: JSON.parse(window.localStorage.getItem('results') ?? '')
     };
   }
 

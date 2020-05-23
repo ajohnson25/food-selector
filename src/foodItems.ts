@@ -1,6 +1,7 @@
 /*!
  * Food selector main
  */
+import axios from 'axios';
 
 let id: number = 0;
 let resultArray: any[] = [];
@@ -9,16 +10,6 @@ let foodCount: number = 0;
 let currentFoodItem: any = [];
 
 class FoodItems {
-  constructor () {
-    this.getFoodCount();
-
-    // create an array with the food count and then shuffle it to randomize
-    for (let i = 1; i <= foodCount; i++) {
-      foodOrderArray = [i, ...foodOrderArray];
-    }
-    this.shuffle(foodOrderArray);
-  }
-
   getCurrentFoodItem () {
     return currentFoodItem;
   }
@@ -26,23 +17,13 @@ class FoodItems {
   /**
   * Get the count of foods from the server
   */
-  getFoodCount () {
-    const xhr: XMLHttpRequest = new XMLHttpRequest();
-    xhr.open('GET', '/api/foods/count', false);
-    xhr.onload = function () {
-      if (this.status === 200) {
-        const count = JSON.parse(this.responseText);
-        foodCount = count;
-      } else if (this.status === 404) {
-        console.log('Not Found');
-      }
-    };
-
-    xhr.onerror = function () {
-      console.log('Request Error from setFoodCount()...');
-    };
-
-    xhr.send();
+  async getFoodCount () {
+    try {
+      const response = await axios.get('/api/foods/count');
+      foodCount = response.data;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   submitFood (id: number, foodName: string, response: string) {
@@ -52,8 +33,16 @@ class FoodItems {
     window.localStorage.setItem('results', JSON.stringify(resultArray));
   }
 
-  showFirstFood (): boolean {
-    return this.showNextFood();
+  showFirstFood () {
+    return new Promise((resolve, reject) => {
+      this.getFoodCount().then(() => {
+        for (let i = 1; i <= foodCount; i++) {
+          foodOrderArray = [i, ...foodOrderArray];
+        }
+        this.shuffle(foodOrderArray);
+        this.showNextFood().then(() => resolve());
+      });
+    });
   }
 
   // Gets the source url based on what is provided.  Current options are local and gcp.
@@ -73,26 +62,16 @@ class FoodItems {
   /**
  * Get the next food item from the list until there are no more, then display the results
  */
-  showNextFood (): boolean {
+  async showNextFood () {
     if (id < foodCount) {
-      const xhr: XMLHttpRequest = new XMLHttpRequest();
-      xhr.open('GET', `/api/foods/${foodOrderArray[id]}`, false);
-      xhr.onload = function () {
-        if (this.status === 200) {
-          const currentFood = JSON.parse(this.responseText);
-          currentFoodItem = currentFood;
-        } else if (this.status === 404) {
-          console.log('Not Found');
-        }
-      };
-
-      xhr.onerror = function () {
-        console.log('Request Error from showNextFood()...');
-      };
-
-      xhr.send();
-      id = id + 1;
-      return true;
+      try {
+        const currentFood = await axios.get(`/api/foods/${foodOrderArray[id]}`);
+        currentFoodItem = currentFood.data;
+        id = id + 1;
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       return false;
     }
