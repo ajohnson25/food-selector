@@ -1,8 +1,14 @@
 import * as React from 'react';
 import Nav from './Nav';
+import Sidenav from './Sidenav';
 import Food from './Food';
 import Results from './Results';
 import User from '../user';
+import materialize from '../materialize/js/bin/materialize';
+import { SideNav, SideNavItem, Icon, NavItem, Navbar } from 'react-materialize';
+
+//import materialize from '../materialize/js/bin/materialize';
+
 
 interface Props{
   title: string;
@@ -24,15 +30,32 @@ class App extends React.Component<Props, State> {
     };
   }
 
+  componentDidMount() {
+    M.AutoInit();
+  }
+
   checkHasMoreFoods (hasMoreFoods: boolean) {
     this.setState({ hasMoreFoods });
   }
 
   render () {
-    return <div>
-      <Nav title = {this.state.title} />
+    return <>
+      {/* <Nav title = {this.state.title} /> */}
+      <Navbar className="orange lighten-1" brand = {<a href="#">{this.state.title}</a>} alignLinks="right" id="mobile-nav" menuIcon={<Icon large>menu</Icon>}>
+        <NavItem href="#!selectfoods">Select Foods (to be implemented)</NavItem>
+        <NavItem href="#!selectfoods">Show Results (to be implemented)</NavItem>
+        <NavItem href="#!downloadlist">Download List (to be implemented)</NavItem>
+        <NavItem href="#!deleteall">Delete All Data(to be implemented)</NavItem>
+      </Navbar>
       {this.state.hasMoreFoods ? <Food hasMoreFoods={this.checkHasMoreFoods.bind(this)}/> : <Results/>}
-    </div>;
+      
+{/*       <SideNav id="SideNav-1">
+        <SideNavItem href="#!selectfoods">Select Foods (to be implemented)</SideNavItem>
+        <SideNavItem href="#!showresults">Show Results (to be implemented)</SideNavItem>
+        <SideNavItem href="#!downloadlist">Download List (to be implemented)</SideNavItem>
+        <SideNavItem href="#!deleteall">Delete All Data(to be implemented)</SideNavItem>
+      </SideNav> */}
+    </>;
   }
 }
 export default App;
