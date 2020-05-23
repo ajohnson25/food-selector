@@ -1,14 +1,8 @@
 import * as React from 'react';
-import Nav from './Nav';
-import Sidenav from './Sidenav';
 import Food from './Food';
 import Results from './Results';
 import User from '../user';
-import materialize from '../materialize/js/bin/materialize';
-import { SideNav, SideNavItem, Icon, NavItem, Navbar } from 'react-materialize';
-
-//import materialize from '../materialize/js/bin/materialize';
-
+import { Icon, NavItem, Navbar } from 'react-materialize';
 
 interface Props{
   title: string;
@@ -30,10 +24,6 @@ class App extends React.Component<Props, State> {
     };
   }
 
-  componentDidMount() {
-    M.AutoInit();
-  }
-
   checkHasMoreFoods (hasMoreFoods: boolean) {
     this.setState({ hasMoreFoods });
   }
@@ -48,8 +38,8 @@ class App extends React.Component<Props, State> {
         <NavItem href="#!deleteall">Delete All Data(to be implemented)</NavItem>
       </Navbar>
       {this.state.hasMoreFoods ? <Food hasMoreFoods={this.checkHasMoreFoods.bind(this)}/> : <Results/>}
-      
-{/*       <SideNav id="SideNav-1">
+
+      {/*       <SideNav id="SideNav-1">
         <SideNavItem href="#!selectfoods">Select Foods (to be implemented)</SideNavItem>
         <SideNavItem href="#!showresults">Show Results (to be implemented)</SideNavItem>
         <SideNavItem href="#!downloadlist">Download List (to be implemented)</SideNavItem>
