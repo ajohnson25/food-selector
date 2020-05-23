@@ -11,7 +11,6 @@ class Nav extends React.Component<Props> {
         <ul className="right">
           <li><img src="https://storage.googleapis.com/triple-nectar-274118.appspot.com/images/user-solid.svg" width="64px" height="64px" className="navbar-icons" /></li>
         </ul>
-        <a href="#" data-target="nav-mobile" className="sidenav-trigger"><i className="material-icons"></i><img src="https://storage.googleapis.com/triple-nectar-274118.appspot.com/images/bars-solid.svg" width="100px" height="100px" />menu</a>
       </div>
     </nav>;
   }
