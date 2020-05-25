@@ -56,10 +56,14 @@ class Food extends React.Component<any, any> {
 
   render () {
     let currentFoodImage;
-    if (foodItems.getFoodCount() === 0) {
-      currentFoodImage = <h1 id="result-header">All done</h1>;
+    if (foodItems.isLoaded() === true) {
+      if (foodItems.getFoodCount() === 0) {
+        currentFoodImage = <h1 id="result-header">All done</h1>;
+      } else {
+        currentFoodImage = <DisplayFood imageLocation={this.state.imageLocation} foodName={this.state.foodName} imageAttribution={this.state.imageAttribution} options={this.state.options} handleClick={this.handleClick.bind(this)} />;
+      }
     } else {
-      currentFoodImage = <DisplayFood imageLocation={this.state.imageLocation} foodName={this.state.foodName} imageAttribution={this.state.imageAttribution} options={this.state.options} handleClick={this.handleClick.bind(this)} />;
+      currentFoodImage = '';
     }
 
     return <div className="container" id="content">

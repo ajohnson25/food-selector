@@ -50,13 +50,6 @@ class App extends React.Component<Props, State> {
         <NavItem onClick={this.deleteClick.bind(this)}>Start Over</NavItem>
       </Navbar>
       {this.state.hasMoreFoods ? <Food hasMoreFoods={this.checkHasMoreFoods.bind(this)}/> : <Results/>}
-
-      {/*       <SideNav id="SideNav-1">
-        <SideNavItem href="#!selectfoods">Select Foods (to be implemented)</SideNavItem>
-        <SideNavItem href="#!showresults">Show Results (to be implemented)</SideNavItem>
-        <SideNavItem href="#!downloadlist">Download List (to be implemented)</SideNavItem>
-        <SideNavItem href="#!deleteall">Delete All Data(to be implemented)</SideNavItem>
-      </SideNav> */}
     </>;
   }
 }

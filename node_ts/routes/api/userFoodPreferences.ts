@@ -17,7 +17,6 @@ router.get('/count', async (req: any, res: any) => {
 
 // Get a user's preferences
 router.get('/:userUUID', async (req: any, res: any) => {
-  console.log(req.params.userUUID);
   const { rows } = await db.query('SELECT * FROM user_preferences_for_foods where user_uuid = $1', [req.params.userUUID]);
   res.send(rows);
 });

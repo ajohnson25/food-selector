@@ -8,10 +8,15 @@ let resultArray: any[] = [];
 let foodOrderArray: number[] = [];
 let foodCount: number = 0;
 let currentFoodItem: any = [];
+let isLoaded = false;
 
 class FoodItems {
   getCurrentFoodItem () {
     return currentFoodItem;
+  }
+
+  isLoaded() {
+    return isLoaded;
   }
 
   async getResults () {
@@ -25,10 +30,13 @@ class FoodItems {
 
   async getFoodOrderArray () {
     try {
+      //reset the array
+      id = 0;
+      foodOrderArray = [];
       const response = await axios.get(`/api/foods/allUser/${window.localStorage.getItem('uuid')}`);
       foodCount = response.data.length;
       for (let i = 0; i < response.data.length; i++) {
-        foodOrderArray = [...foodOrderArray, response.data[i].food_id];
+        foodOrderArray = [response.data[i].food_id,...foodOrderArray];
       }
     } catch (error) {
       console.log(error);
@@ -55,7 +63,7 @@ class FoodItems {
     return new Promise((resolve, reject) => {
       this.getFoodOrderArray().then(() => {
         this.shuffle(foodOrderArray);
-        this.showNextFood().then(() => resolve());
+        this.showNextFood().then(() => resolve(isLoaded = true));
       });
     });
   }
