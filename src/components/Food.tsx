@@ -38,9 +38,9 @@ class Food extends React.Component<any, any> {
     };
   }
 
-  async handleClick (e: any) {
+  async handleClick (e: { preventDefault: () => void; target: { id: string; }; }) {
     e.preventDefault();
-    foodItems.submitFood(this.state.foodItem.id, this.state.foodName, e.target.id);
+    foodItems.submitFoodPreference(this.state.foodItem.id, e.target.id);
 
     const hasMoreFoods = await foodItems.showNextFood();
 

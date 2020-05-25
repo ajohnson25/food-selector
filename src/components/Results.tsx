@@ -2,21 +2,22 @@ import * as React from 'react';
 import FoodItems from '../foodItems';
 
 interface Props{
+
 }
 
 interface State{
   results: any[]
 }
-let foodItems: any;
+let foodItems: FoodItems;
 
 class Results extends React.Component<Props, State> {
   constructor (props: any) {
     super(props);
     foodItems = new FoodItems();
     this.state = {
-      results: JSON.parse(window.localStorage.getItem('results') ?? '')
+      results: []
     };
-    foodItems.getResults().then((result: any) => this.setState({ results: result }));
+    foodItems.getPreferenceResults().then((result: any) => this.setState({ results: result }));
   }
 
   render () {

@@ -11,16 +11,15 @@ interface Props{
 interface State{
   title: string;
   hasMoreFoods: boolean;
-  uuid: string | null;
 }
 
 class App extends React.Component<Props, State> {
-  constructor (props: any) {
+  constructor (props: Props) {
     super(props);
+    User.login();
     this.state = {
       title: this.props.title,
-      hasMoreFoods: true,
-      uuid: new User().getUUID()
+      hasMoreFoods: true
     };
   }
 
@@ -44,7 +43,7 @@ class App extends React.Component<Props, State> {
 
   render () {
     return <>
-      <Navbar className="orange lighten-1" brand = {<a href="#">{this.state.title}</a>} alignLinks="right" id="mobile-nav" menuIcon={<Icon large>menu</Icon>}>
+      <Navbar className="orange lighten-1" brand = {<a href="/">{this.state.title}</a>} alignLinks="right" id="mobile-nav" menuIcon={<Icon large>menu</Icon>}>
         <NavItem onClick={this.selectClick.bind(this)}>Select Foods</NavItem>
         <NavItem onClick={this.resultsClick.bind(this)}>Show Results</NavItem>
         <NavItem onClick={this.deleteClick.bind(this)}>Start Over</NavItem>
