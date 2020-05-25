@@ -9,9 +9,10 @@ router.get('/', async (req: any, res: any) => {
   res.send(rows);
 });
 
-router.get('/count', async (req: any, res: any) => {
-  const { rows } = await db.query('SELECT count(*) FROM foods');
-  res.send(rows[0].count);
+// Gets All of the foods that a user hasn't evaluated yet
+router.get('/allUser/:userUUID', async (req: any, res: any) => {
+  const { rows } = await db.query('SELECT get_remaining_foods($1) as food_id', [req.params.userUUID]);
+  res.send(rows);
 });
 
 // Get Single Food

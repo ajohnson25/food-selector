@@ -11,7 +11,9 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../dist')));
 
 app.use('/api/foods', require('./routes/api/foods'));
+app.use('/api/fsuser', require('./routes/api/fsuser'));
 app.use('/api/userFoodPreferences', require('./routes/api/userFoodPreferences'));
+app.use('/api/login', require('./routes/api/login'));
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
 

@@ -14,20 +14,38 @@ class FoodItems {
     return currentFoodItem;
   }
 
-  /**
-  * Get the count of foods from the server
-  */
-  async getFoodCount () {
+  async getResults () {
     try {
-      const response = await axios.get('/api/foods/count');
-      foodCount = response.data;
+      const response = await axios.get(`/api/userFoodPreferences/${window.localStorage.getItem('uuid')}`);
+      return response.data;
     } catch (error) {
       console.log(error);
     }
   }
 
-  submitFood (id: number, foodName: string, response: string) {
+  async getFoodOrderArray () {
+    try {
+      const response = await axios.get(`/api/foods/allUser/${window.localStorage.getItem('uuid')}`);
+      foodCount = response.data.length;
+      for (let i = 0; i < response.data.length; i++) {
+        foodOrderArray = [...foodOrderArray, response.data[i].food_id];
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  getFoodCount ():number {
+    return foodCount;
+  }
+
+  async submitFood (id: number, foodName: string, response: string) {
     // store the results here
+    try {
+      await axios.post(`/api/userFoodPreferences/${window.localStorage.getItem('uuid')}`, { foodId: id, foodPreferenceId: response });
+    } catch (error) {
+      console.log(error);
+    }
     resultArray = [...resultArray, { id, foodName, response }];
     window.localStorage.removeItem('results');
     window.localStorage.setItem('results', JSON.stringify(resultArray));
@@ -35,10 +53,7 @@ class FoodItems {
 
   showFirstFood () {
     return new Promise((resolve, reject) => {
-      this.getFoodCount().then(() => {
-        for (let i = 1; i <= foodCount; i++) {
-          foodOrderArray = [i, ...foodOrderArray];
-        }
+      this.getFoodOrderArray().then(() => {
         this.shuffle(foodOrderArray);
         this.showNextFood().then(() => resolve());
       });

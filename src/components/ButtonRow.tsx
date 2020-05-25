@@ -22,7 +22,7 @@ class ButtonRow extends React.Component<ButtonRowProps> {
 
 class Button extends React.Component<ButtonProps> {
   render () {
-    return <button className="btn waves-effect waves-light col s4" id={this.props.option.shortText} onClick={this.props.onClick} value={this.props.option.text}>{this.props.option.text}</button>;
+    return <button className="btn waves-effect waves-light col s4" id={this.props.option.id} onClick={this.props.onClick} value={this.props.option.text}>{this.props.option.text}</button>;
   }
 }
 

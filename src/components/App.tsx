@@ -28,14 +28,26 @@ class App extends React.Component<Props, State> {
     this.setState({ hasMoreFoods });
   }
 
+  resultsClick () {
+    this.setState({ hasMoreFoods: false });
+  }
+
+  selectClick () {
+    this.setState({ hasMoreFoods: true });
+  }
+
+  // Remove the users uuid for now and refresh the page
+  deleteClick () {
+    window.localStorage.removeItem('uuid');
+    location.reload();
+  }
+
   render () {
     return <>
-      {/* <Nav title = {this.state.title} /> */}
       <Navbar className="orange lighten-1" brand = {<a href="#">{this.state.title}</a>} alignLinks="right" id="mobile-nav" menuIcon={<Icon large>menu</Icon>}>
-        <NavItem href="#!selectfoods">Select Foods (to be implemented)</NavItem>
-        <NavItem href="#!selectfoods">Show Results (to be implemented)</NavItem>
-        <NavItem href="#!downloadlist">Download List (to be implemented)</NavItem>
-        <NavItem href="#!deleteall">Delete All Data(to be implemented)</NavItem>
+        <NavItem onClick={this.selectClick.bind(this)}>Select Foods</NavItem>
+        <NavItem onClick={this.resultsClick.bind(this)}>Show Results</NavItem>
+        <NavItem onClick={this.deleteClick.bind(this)}>Start Over</NavItem>
       </Navbar>
       {this.state.hasMoreFoods ? <Food hasMoreFoods={this.checkHasMoreFoods.bind(this)}/> : <Results/>}
 

@@ -15,30 +15,15 @@ router.get('/count', async (req: any, res: any) => {
   res.send(rows[0].count);
 });
 
-router.post('/login', async (req:any, res:any) => {
-  const user: any = {
-    id: 1
-  };
-
-  jwt.sign({ user }, 'secretkey', (err: any, token: any) => {
-    if (err) {
-      console.log(err.stack);
-    }
-    res.json({
-      token
-    });
-  });
-});
-
 // Get a user's preferences
 router.get('/:userUUID', async (req: any, res: any) => {
-  const { userUUID } = req.params.userUUID;
-  const { rows } = await db.query('SELECT * FROM user_food_preferences where user_uuid = $1', [userUUID]);
-  res.send(rows[0]);
+  console.log(req.params.userUUID);
+  const { rows } = await db.query('SELECT * FROM user_preferences_for_foods where user_uuid = $1', [req.params.userUUID]);
+  res.send(rows);
 });
 
 // Store food preference
-router.post('/:userUUID', verifyToken, async (req: any, res: any) => {
+router.post('/:userUUID', async (req: any, res: any) => {
   const { rows } = await db.query('INSERT INTO user_food_preferences (user_uuid, food_id, food_preference_id) values ($1,$2,$3)', [req.params.userUUID, req.body.foodId, req.body.foodPreferenceId]);
   res.send(rows[0]);
 });
@@ -60,7 +45,7 @@ router.delete('/:userUUID', verifyToken, async (req: any, res: any) => {
 });
 
 // Delete one food for a uuid
-router.delete('/:userUUID/:foodId', verifyToken, async (req: any, res: any) => {
+router.delete('/:userUUID/:foodId', async (req: any, res: any) => {
   const { rows } = await db.query('DELETE FROM user_food_preferences where user_uuid = $1 and food_id = $2', [req.params.userUUID, req.params.foodId]);
   res.send(rows[0]);
 });
