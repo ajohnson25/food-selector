@@ -15,6 +15,6 @@ app.use('/api/fsuser', require('./routes/api/fsuser'));
 app.use('/api/userFoodPreferences', require('./routes/api/userFoodPreferences'));
 app.use('/api/login', require('./routes/api/login'));
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
+app.listen(port, () => console.log(`Food Selector server listening at http://localhost:${port}`));
 
 module.exports = {};
