@@ -16,5 +16,6 @@ env:
 services:
   - postgresql
 before_script:
-  - psql PATH="/usr/lib/postgresql/12/bin:$PATH"
+  - sudo -u postgres psql -c "CREATE USER postgres WITH PASSWORD 'password'"
+  - sudo -u postgres psql -c "ALTER ROLE postgres SUPERUSER"
   - psql -f db/fs_bootstrap.sql -U postgres -p 5433
