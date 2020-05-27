@@ -10,7 +10,10 @@ addons:
     packages:
     - postgresql-12
     - postgresql-client-12
+env:
+  global:
+  - PGPORT=5433
 services:
   - postgresql
 before_script:
-  - psql -f db/fs_bootstrap.sql -U postgres
+  - psql -f db/fs_bootstrap.sql -U postgres -p 5433
