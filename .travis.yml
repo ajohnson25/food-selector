@@ -19,4 +19,4 @@ before_script:
   - sudo systemctl restart postgresql@12-main
   - sudo -u postgres psql -c "CREATE USER fsuser WITH PASSWORD 'fsuser'"
   - sudo -u postgres psql -c "ALTER ROLE fsuser SUPERUSER"
-  - psql -f db/fs_bootstrap.sql -U fsuser -p 5433
+  - psql -f db/fs_bootstrap.sql -U fsuser -d postgres -p 5433
