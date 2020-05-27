@@ -23,7 +23,7 @@ SET row_security = off;
 -- Name: foodSelector; Type: DATABASE; Schema: -; Owner: postgres
 --
 
-CREATE DATABASE "foodSelector" WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'English_United States.1252' LC_CTYPE = 'English_United States.1252';
+CREATE DATABASE "foodSelector" WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'English_United States.UTF8' LC_CTYPE = 'English_United States.UTF8';
 
 
 ALTER DATABASE "foodSelector" OWNER TO postgres;
