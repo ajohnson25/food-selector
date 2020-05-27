@@ -3,6 +3,7 @@ node_js:
   - 12
 script:
   - 'npm run lint'
+  - 'npm run test'
 addons:
   postgresql: '12'
   apt:
