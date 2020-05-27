@@ -4,6 +4,8 @@ node_js:
 script:
   - "npm run lint"
   - "npm run test"
+addons:
+  postgresql: "12"
 services:
   - postgresql
 before_script:
