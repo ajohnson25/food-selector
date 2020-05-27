@@ -5,6 +5,12 @@ const pool = new Pool({
   ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false
 });
 
+function end(){
+  pool.end();
+}
+
+
 module.exports = {
-  query: (text: any, params: any) => pool.query(text, params)
+  query: (text: any, params: any) => pool.query(text, params),
+  end: () => end()
 };

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist_node/index.js",
     "dev": "nodemon node_ts/index.ts",
-    "test": "jest --passWithNoTests",
+    "test": "jest",
     "build": "npx babel node_ts --out-dir dist_node --extensions .ts,.tsx && webpack --config ./webpack.config.js --mode production",
     "webpackDev": "webpack --config ./webpack.config.js --mode development --watch",
     "lint": "eslint src/*.js src/*.ts src/components/*.tsx node_ts/*.ts node_ts/routes/api/*.ts --fix",
@@ -75,6 +75,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "html-webpack-plugin": "^4.3.0",
     "jest": "^26.0.1",
+    "jest-localstorage-mock": "^2.4.2",
     "mini-css-extract-plugin": "^0.9.0",
     "nodemon": "^2.0.4",
     "postcss-loader": "^3.0.0",
