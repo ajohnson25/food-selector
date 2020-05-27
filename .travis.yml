@@ -13,6 +13,7 @@ addons:
 env:
   global:
   - PGPORT=5433
+  - PASSWORD=fsuser
 services:
   - postgresql
 before_script:
