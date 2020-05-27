@@ -13,10 +13,9 @@ addons:
 env:
   global:
   - PGPORT=5433
-  - PASSWORD=fsuser
 services:
   - postgresql
 before_script:
   - sudo -u postgres psql -c "CREATE USER fsuser WITH PASSWORD 'fsuser'"
   - sudo -u postgres psql -c "ALTER ROLE fsuser SUPERUSER"
-  - psql -f db/fs_bootstrap.sql -U fsuser -p 5433
+  - psql -f db/fs_bootstrap.sql -U fsuser -p 5433 -W fsuser
