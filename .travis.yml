@@ -16,6 +16,6 @@ env:
 services:
   - postgresql
 before_script:
-  - sudo -u postgres psql -c "CREATE USER postgres WITH PASSWORD 'password'"
-  - sudo -u postgres psql -c "ALTER ROLE postgres SUPERUSER"
-  - psql -f db/fs_bootstrap.sql -U postgres -p 5433
+  - sudo -u postgres psql -c "CREATE USER fsuser WITH PASSWORD 'fsuser'"
+  - sudo -u postgres psql -c "ALTER ROLE fsuser SUPERUSER"
+  - psql -f db/fs_bootstrap.sql -U fsuser -p 5433
