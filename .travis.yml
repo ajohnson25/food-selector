@@ -16,5 +16,5 @@ env:
 services:
   - postgresql
 before_script:
-  - psql PATH="/usr/lib/postgresql/11/bin:$PATH"
+  - psql PATH="/usr/lib/postgresql/12/bin:$PATH"
   - psql -f db/fs_bootstrap.sql -U postgres -p 5433
