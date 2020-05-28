@@ -11,5 +11,6 @@ function end () {
 
 module.exports = {
   query: (text: any, params: any) => pool.query(text, params),
+  connect: () => pool.connect(),
   end: () => end()
 };
