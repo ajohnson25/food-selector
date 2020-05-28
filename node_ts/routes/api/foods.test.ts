@@ -5,8 +5,6 @@ afterAll(() => {
 }
 );
 
-// TODO:Add a test for '/allUser/:userUUID', requires entries in userFoodPreferences (useruuid, food_id, food_preference_id) and fsuser (uuid)
-
 test('foods', async () => {
   const client = await db.connect();
   const foodCount = 10;
