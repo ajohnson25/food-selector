@@ -10,6 +10,7 @@ router.get('/', async (req: any, res: any) => {
   res.send(rows);
 });
 
+// Get the preference count
 router.get('/count', async (req: any, res: any) => {
   const { rows } = await db.query('SELECT count(*) FROM user_food_preferences');
   res.send(rows[0].count);
