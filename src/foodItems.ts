@@ -10,6 +10,10 @@ let currentFoodItem: any = [];
 let isLoaded = false;
 
 class FoodItems {
+  constructor () {
+    axios.defaults.headers.common = { Authorization: `Bearer ${window.localStorage.getItem('bearer')}` };
+  }
+
   getCurrentFoodItem () {
     return currentFoodItem;
   }

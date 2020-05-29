@@ -1,4 +1,5 @@
 import Router from 'express-promise-router';
+import VerifyToken from '../../verifyToken';
 
 const router: any = Router();
 const db: any = require('../../db');
@@ -9,8 +10,9 @@ router.get('/', async (req: any, res: any) => {
   res.send(rows);
 });
 
-// Gets All of the foods that a user hasn't evaluated yet
-router.get('/allUser/:userUUID', async (req: any, res: any) => {
+/* Gets All of the foods that a user hasn't evaluated yet, this is a user_preference_foods function and
+* all of those methods are protected */
+router.get('/allUser/:userUUID', VerifyToken.verifyToken, async (req: any, res: any) => {
   const { rows } = await db.query('SELECT get_remaining_foods($1) as food_id', [req.params.userUUID]);
   res.send(rows);
 });
