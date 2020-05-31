@@ -16,3 +16,6 @@ The project also uses Typescript for static types.
 The images in the example and in the source point to a local database and URL with Google Cloud storage, in order to host the images on the webserver you will want to do the following:
 1. Download the [Images Archive](https://storage.googleapis.com/triple-nectar-274118.appspot.com/images.zip) and unzip it to a images folder in the base directory of the project
 1. Change the Food.tsx like that has const imageProviderURL = foodItems.getSourceURL('gcp'); to const imageProviderURL = foodItems.getSourceURL('local');
+
+# Testing and Deploy
+Testing is done using the Jest Framework and currently the project has DB Integration tests.  Builds from this repository are tested with Jest and linted before being sent to Heroku.
