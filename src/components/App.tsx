@@ -43,7 +43,7 @@ class App extends React.Component<Props, State> {
 
   render () {
     return <>
-      <Navbar className="orange lighten-1" brand = {<a href="/">{this.state.title}</a>} alignLinks="right" id="mobile-nav" menuIcon={<Icon large>menu</Icon>}>
+      <Navbar className="orange lighten-1" brand={<a className="brand-logo" href="/">{this.state.title}</a>} alignLinks="right" id="mobile-nav" menuIcon={<Icon large>menu</Icon>}>
         <NavItem onClick={this.selectClick.bind(this)}>Select Foods</NavItem>
         <NavItem onClick={this.resultsClick.bind(this)}>Show Results</NavItem>
         <NavItem onClick={this.deleteClick.bind(this)}>Start Over</NavItem>
