@@ -6,9 +6,10 @@ class User {
     // Set the UUID
     if (window.localStorage.getItem('uuid') === null) {
       window.localStorage.setItem('uuid', uuidv4());
-      this.createDBUser();
+      await this.createDBUser();
     } else {
-      this.updateLastLogin();
+      this.getDBUser().then((data: any) => { if (data.length === 0) { this.createDBUser(); } });
+      await this.updateLastLogin();
     }
 
     // Get the bearer token
@@ -37,6 +38,18 @@ class User {
   static async createDBUser (): Promise<void> {
     try {
       await axios.post(`/api/fsuser/${window.localStorage.getItem('uuid')}`);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  /**
+   * Creates the user in the database for the application, no password or external auth
+   */
+  static async getDBUser (): Promise<any> {
+    try {
+      const response = await axios.get(`/api/fsuser/${window.localStorage.getItem('uuid')}`);
+      return response.data;
     } catch (error) {
       console.log(error);
     }
