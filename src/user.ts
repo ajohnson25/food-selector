@@ -44,7 +44,7 @@ class User {
   }
 
   /**
-   * Creates the user in the database for the application, no password or external auth
+   * Gets the user in the database, used to verify that the user exists
    */
   static async getDBUser (): Promise<any> {
     try {

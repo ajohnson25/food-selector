@@ -74,7 +74,8 @@ class Food extends React.Component<any, any> {
 
 class DisplayFood extends React.Component<DisplayFoodProps> {
   render () {
-    return <><FoodImage imageLocation={this.props.imageLocation} foodName={this.props.foodName} imageAttribution={this.props.imageAttribution}/>
+    return <>
+      <FoodImage imageLocation={this.props.imageLocation} foodName={this.props.foodName} imageAttribution={this.props.imageAttribution}/>
       <ButtonRow options={this.props.options} onClick={this.props.handleClick}/>
     </>;
   }
