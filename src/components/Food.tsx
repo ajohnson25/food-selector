@@ -76,7 +76,9 @@ class DisplayFood extends React.Component<DisplayFoodProps> {
   render () {
     return <>
       <FoodImage imageLocation={this.props.imageLocation} foodName={this.props.foodName} imageAttribution={this.props.imageAttribution}/>
-      <ButtonRow options={this.props.options} onClick={this.props.handleClick}/>
+      <footer id="footer">
+        <ButtonRow options={this.props.options} onClick={this.props.handleClick}/>
+      </footer>
     </>;
   }
 }
