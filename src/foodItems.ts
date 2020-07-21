@@ -122,7 +122,7 @@ class FoodItems {
   /**
  * Fisher-Yates / Knuth shuffle
  */
-  shuffle (array: number[]):number[] {
+  static shuffle (array: number[]):number[] {
     let currentIndex: number = array.length; let temporaryValue: number; let randomIndex: number;
 
     while (currentIndex !== 0) {
