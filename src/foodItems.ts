@@ -78,7 +78,7 @@ class FoodItems {
   showFirstFood () :Promise<any> {
     return new Promise((resolve) => {
       this.getRemainingFoodList().then(() => {
-        this.shuffle(foodOrderArray);
+        FoodItems.shuffle(foodOrderArray);
         this.showNextFood().then(() => resolve(isLoaded = true));
       });
     });
