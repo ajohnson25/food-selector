@@ -78,7 +78,7 @@ class FoodItems {
   showFirstFood () :Promise<any> {
     return new Promise((resolve) => {
       this.getRemainingFoodList().then(() => {
-        this.shuffle(foodOrderArray);
+        FoodItems.shuffle(foodOrderArray);
         this.showNextFood().then(() => resolve(isLoaded = true));
       });
     });
@@ -122,7 +122,7 @@ class FoodItems {
   /**
  * Fisher-Yates / Knuth shuffle
  */
-  shuffle (array: number[]):number[] {
+  static shuffle (array: number[]):number[] {
     let currentIndex: number = array.length; let temporaryValue: number; let randomIndex: number;
 
     while (currentIndex !== 0) {
